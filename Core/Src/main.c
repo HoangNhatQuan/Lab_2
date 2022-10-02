@@ -238,6 +238,9 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
 					  case 1: // set number 1
 				 		  	  	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);			// set den 7segs thu nhat bat
 				 		  	  	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);			// set den 7set thu hai tat
+				 		  	  	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);			// set den 7segs thu ba tat
+				 		  	  	  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);			// set den 7set thu tu tat
+				 		  	  	  HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, RESET);			// set 2 den led bat
 						 		  HAL_GPIO_WritePin(SEG_0_GPIO_Port, SEG_0_Pin, SET);
 						 		  HAL_GPIO_WritePin(SEG_1_GPIO_Port, SEG_1_Pin, RESET);
 						 		  HAL_GPIO_WritePin(SEG_2_GPIO_Port, SEG_2_Pin, RESET);
@@ -248,8 +251,11 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
 						 		  status = 2;
 						  break;
 					  case 2: // set number 2
-						  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);			// set den 7segs thu nhat tat
-				 		  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET); 		// set den 7set thu hai bat
+		 		  	  	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);			// set den 7segs thu nhat tat
+		 		  	  	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);			// set den 7set thu hai bat
+		 		  	  	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);			// set den 7segs thu ba tat
+		 		  	  	  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);			// set den 7set thu tu tat
+		 		  	  	  HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, RESET);			// set 2 den led bat
 				 		  HAL_GPIO_WritePin(SEG_0_GPIO_Port, SEG_0_Pin, RESET);
 				 		  HAL_GPIO_WritePin(SEG_1_GPIO_Port, SEG_1_Pin, RESET);
 				 		  HAL_GPIO_WritePin(SEG_2_GPIO_Port, SEG_2_Pin, SET);
@@ -257,6 +263,36 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
 				 		  HAL_GPIO_WritePin(SEG_4_GPIO_Port, SEG_4_Pin, RESET);
 				 		  HAL_GPIO_WritePin(SEG_5_GPIO_Port, SEG_5_Pin, SET);
 				 		  HAL_GPIO_WritePin(SEG_6_GPIO_Port, SEG_6_Pin, RESET);
+				 		  status = 3;
+						  break;
+					  case 3: // set number 3
+		 		  	  	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);			// set den 7segs thu nhat tat
+		 		  	  	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);			// set den 7set thu hai tat
+		 		  	  	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);			// set den 7segs thu ba bat
+		 		  	  	  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);			// set den 7set thu tu tat
+		 		  	  	  HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, SET);			// set 2 den led tat
+		 				  HAL_GPIO_WritePin(SEG_0_GPIO_Port, SEG_0_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_1_GPIO_Port, SEG_1_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_2_GPIO_Port, SEG_2_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_3_GPIO_Port, SEG_3_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_4_GPIO_Port, SEG_4_Pin, SET);
+		 				  HAL_GPIO_WritePin(SEG_5_GPIO_Port, SEG_5_Pin, SET);
+		 				  HAL_GPIO_WritePin(SEG_6_GPIO_Port, SEG_6_Pin, RESET);
+				 		  status = 4;
+						  break;
+					  case 4: // set number 0
+		 		  	  	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);			// set den 7segs thu nhat tat
+		 		  	  	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);			// set den 7set thu hai tat
+		 		  	  	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);			// set den 7segs thu ba tat
+		 		  	  	  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);			// set den 7set thu tu bat
+		 		  	  	  HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, SET);			// set 2 den led tat
+		 				  HAL_GPIO_WritePin(SEG_0_GPIO_Port, SEG_0_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_1_GPIO_Port, SEG_1_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_2_GPIO_Port, SEG_2_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_3_GPIO_Port, SEG_3_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_4_GPIO_Port, SEG_4_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_5_GPIO_Port, SEG_5_Pin, RESET);
+		 				  HAL_GPIO_WritePin(SEG_6_GPIO_Port, SEG_6_Pin, SET);
 				 		  status = 1;
 						  break;
 					  default:
