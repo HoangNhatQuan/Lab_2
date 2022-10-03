@@ -333,37 +333,31 @@ void update7SEG(int index){
             break;
         case 1:		//Display the second 7SEG with led_buffer[1]
 	  	  	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);			// set den 7segs thu nhat tat
+	        	display7SEG(led_buffer[1]);  	// Hien thi led_buffer[1]
 	  	  	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);			// set den 7set thu hai bat
-	  	  	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);			// set den 7segs thu ba tat
-	  	  	  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);			// set den 7set thu tu tat
-        	display7SEG(led_buffer[1]);  	// Hien thi led_buffer[1]
             break;
         case 2:     //Display the third 7SEG with led_buffer[2]
-	  	  	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);			// set den 7segs thu nhat tat
 	  	  	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);			// set den 7set thu hai tat
+	        	display7SEG(led_buffer[2]);  	// Hien thi led_buffer[2]
 	  	  	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);			// set den 7segs thu ba bat
-	  	  	  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);			// set den 7set thu tu tat
-        	display7SEG(led_buffer[2]);  	// Hien thi led_buffer[2]
             break;
         case 3:		//Display the forth 7SEG with led_buffer[3]
-	  	  	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);			// set den 7segs thu nhat tat
-	  	  	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);			// set den 7set thu hai tat
 	  	  	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);			// set den 7segs thu ba tat
+	        	display7SEG(led_buffer[3]);  	// Hien thi led_buffer[3]
 	  	  	  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);			// set den 7set thu tu bat
-        	display7SEG(led_buffer[3]);  	// Hien thi led_buffer[3]
+
             break;
         default:
             break;
     }
 }
-int counter = 50; 	// set bien dem 50 lan tuong duong voi 500ms
-int status = 1;		// bien trang thai giua 2 den 7segs
-
+int counter1 = 0; 	// set bien dem 25 lan tuong duong voi 250ms cho 7segs
+int counter2 = 0;	// set bien dem 100 lan tuong duong voi 1000ms cho DOT
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
-	if(counter > 0){
-		counter--;
-		if(counter <= 0){
-			counter = 50;
+	if(counter1 >= 0){
+		counter1--;
+		if(counter1 <= 0){
+			counter1 = 25;
 			switch (index_led){
 				case 0:
 					update7SEG(index_led);
@@ -384,6 +378,13 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
 				default:
 					break;
 			}
+		}
+	}
+	if(counter2 >= 0){
+		counter2--;
+		if(counter2 <= 0){
+			counter2 = 100;
+			HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin); 	 // set den DOT bat tat 1s
 		}
 	}
 }
