@@ -357,27 +357,27 @@ void update7SEG(int index){
     }
 }
 int counter = 50; 	// set bien dem 50 lan tuong duong voi 500ms
-int status = 1;		// bien trang thai giua 2 den 7segs
+
 
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
 	if(counter > 0){
 		counter--;
 		if(counter <= 0){
 			counter = 50;
-			switch (index_led){
-				case 0:
+			switch (index_led){		//chuyen thu tu den 7seg
+				case 0:  	// den thu nhat
 					update7SEG(index_led);
 					index_led = 1;
 					break;
-				case 1:
+				case 1:		// den thu hai
 					update7SEG(index_led);
 					index_led = 2;
 					break;
-				case 2:
+				case 2:		// den thu ba
 					update7SEG(index_led);
 					index_led = 3;
 					break;
-				case 3:
+				case 3:		// den thu tu
 					update7SEG(index_led);
 					index_led = 0;
 					break;
