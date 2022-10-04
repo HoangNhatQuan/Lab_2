@@ -229,21 +229,26 @@ int main(void)
   }
 
   int hour = 15, minute = 8, second = 50;
+  setTimer1(100);	// set thoi gian 1s
+  setTimer2(100);
   while(1){
-      second++;
-      if (second >= 60){
-          second = 0;
-          minute++;
-      }
-      if(minute >= 60){
-          minute = 0;
-          hour++;
-      }
-      if(hour >=24){
-          hour = 0;
-      }
-      updateClockBuffer(hour,minute);
-      HAL_Delay(100);
+	  if(timer_flag1 == 1){
+		  second++;
+		  if (second >= 60){
+			  second = 0;
+			  minute++;
+		  }
+		  if(minute >= 60){
+			  minute = 0;
+			  hour++;
+		  }
+		  if(hour >=24){
+			  hour = 0;
+		  }
+		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);	// Den DOT nhap nhay trong 1s
+		  updateClockBuffer(hour,minute);		// Ham giong voi bai 5
+		  setTimer1(100);	// set thoi gian 1s
+	  }
   }
   /* USER CODE END 3 */
 }
@@ -406,39 +411,7 @@ static void MX_GPIO_Init(void)
 //int counter1 = 0; 	// set bien dem 25 lan tuong duong voi 250ms cho 7segs
 //int counter2 = 0;	// set bien dem 100 lan tuong duong voi 1000ms cho DOT
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
-//	if(counter1 >= 0){
-//		counter1--;
-//		if(counter1 <= 0){
-//			counter1 = 25;
-//			switch (index_led){
-//				case 0:
-//					update7SEG(index_led);
-//					index_led = 1;
-//					break;
-//				case 1:
-//					update7SEG(index_led);
-//					index_led = 2;
-//					break;
-//				case 2:
-//					update7SEG(index_led);
-//					index_led = 3;
-//					break;
-//				case 3:
-//					update7SEG(index_led);
-//					index_led = 0;
-//					break;
-//				default:
-//					break;
-//			}
-//		}
-//	}
-//	if(counter2 >= 0){
-//		counter2--;
-//		if(counter2 <= 0){
-//			counter2 = 100;
-//			HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin); 	 // set den DOT bat tat 1s
-//		}
-//	}
+	timerRun();
 }
 /* USER CODE END 4 */
 
