@@ -10,9 +10,11 @@
 
 extern int timer_flag1;
 extern int timer_flag2;
+extern int timer_flag3;
 
 void setTimer1(int duration);
 void setTimer2(int duration);
+void setTimer3(int duration);
 void timerRun();
 
 

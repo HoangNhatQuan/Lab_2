@@ -102,7 +102,8 @@ int main(void)
   int hour = 15, minute = 8, second = 50;
   setTimer1(10);
   setTimer2(100);
-  	  HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, SET);
+  setTimer3(25);
+
 	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);			// set den 7segs thu nhat tat
 	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);			// set den 7set thu hai tat
 	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);			// set den 7segs thu ba tat
@@ -127,6 +128,29 @@ int main(void)
 	  if(timer_flag2 == 1){
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin); 	 // set den DOT bat tat 1s
 		  setTimer2(100);
+	  }
+	  if(timer_flag3 == 1){
+			switch (index_led){		// chuyen thu tu den 7 seg
+				case 0:		// den thu nhat
+					update7SEG(index_led);
+					index_led = 1;
+					break;
+				case 1:		// den thu hai
+					update7SEG(index_led);
+					index_led = 2;
+					break;
+				case 2:		// den thu ba
+					update7SEG(index_led);
+					index_led = 3;
+					break;
+				case 3:		// den thu tu
+					update7SEG(index_led);
+					index_led = 0;
+					break;
+				default:
+					break;
+			}
+			setTimer3(25);
 	  }
 
   }
@@ -291,39 +315,7 @@ int counter1 = 0; 	// set bien dem 25 lan tuong duong voi 250ms cho 7segs
 //int counter2 = 0;	// set bien dem 100 lan tuong duong voi 1000ms cho DOT
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
 	timerRun();
-	if(counter1 >= 0){
-		counter1--;
-		if(counter1 <= 0){
-			counter1 = 25;
-			switch (index_led){		// chuyen thu tu den 7 seg
-				case 0:		// den thu nhat
-					update7SEG(index_led);
-					index_led = 1;
-					break;
-				case 1:		// den thu hai
-					update7SEG(index_led);
-					index_led = 2;
-					break;
-				case 2:		// den thu ba
-					update7SEG(index_led);
-					index_led = 3;
-					break;
-				case 3:		// den thu tu
-					update7SEG(index_led);
-					index_led = 0;
-					break;
-				default:
-					break;
-			}
-		}
-	}
-//	if(counter2 >= 0){
-//		counter2--;
-//		if(counter2 <= 0){
-//			counter2 = 100;
-//			HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin); 	 // set den DOT bat tat 1s
-//		}
-//	}
+
 }
 
 void display7SEG(int num){ 		// ham hien thi den 7seg
