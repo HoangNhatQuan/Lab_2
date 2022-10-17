@@ -120,9 +120,9 @@ int main(void)
 	  }
 		  updateLEDMatrix(index_led_matrix);	// call func updateLEDMatrix
 		  if(timer_flag3==1){
-			  clearDOT(matrix_buffer[index_led_matrix],index_led_matrix);
+			  clearDOT(matrix_buffer[index_led_matrix],index_led_matrix);	// set row off and col disable when a loop
 			  ++index_led_matrix;
-			  if(index_led_matrix>8){
+			  if(index_led_matrix>8){		//set index = 0 when index > 8
 				  index_led_matrix = 0;
 			  }
 			  setTimer3(2);

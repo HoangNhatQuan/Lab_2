@@ -146,7 +146,7 @@ int main(void)
  800018c:	681b      	ldr	r3, [r3, #0]
  800018e:	2b01      	cmp	r3, #1
  8000190:	d1ef      	bne.n	8000172 <main+0x26>
-			  clearDOT(matrix_buffer[index_led_matrix],index_led_matrix);
+			  clearDOT(matrix_buffer[index_led_matrix],index_led_matrix);	// set row off and col disable when a loop
  8000192:	4b0e      	ldr	r3, [pc, #56]	; (80001cc <main+0x80>)
  8000194:	681b      	ldr	r3, [r3, #0]
  8000196:	4a0f      	ldr	r2, [pc, #60]	; (80001d4 <main+0x88>)
@@ -162,7 +162,7 @@ int main(void)
  80001aa:	3301      	adds	r3, #1
  80001ac:	4a07      	ldr	r2, [pc, #28]	; (80001cc <main+0x80>)
  80001ae:	6013      	str	r3, [r2, #0]
-			  if(index_led_matrix>8){
+			  if(index_led_matrix>8){		//set index = 0 when index > 8
  80001b0:	4b06      	ldr	r3, [pc, #24]	; (80001cc <main+0x80>)
  80001b2:	681b      	ldr	r3, [r3, #0]
  80001b4:	2b08      	cmp	r3, #8
